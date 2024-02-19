@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int          @id @default(autoincrement())
+  email             String       @unique
+  encryptedPassword String
+  createdAt         DateTime     @default(now())
+  profile           UserProfile?
+  posts             PostUser[]
+  Comment           Comment[]
+  Like              Like[]
+}
+
+model UserProfile {
+  id       Int     @id @default(autoincrement())
+  nickname String?
+  name     String?
+  gender   String?
+  age      Int?
+  userId   Int     @unique
+  user     User    @relation(fields: [userId], references: [id])
+}
+
+model Post {
+  id        Int        @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime   @default(now())
+  likes     Like[]
+  comments  Comment[]
+  users     PostUser[]
+}
+
+model PostUser {
+  id     Int  @id @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Like {
+  id        Int      @id @default(autoincrement()) @ignore
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+}

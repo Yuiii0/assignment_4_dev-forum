@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_controller_1 = __importDefault(require("./auth/auth.controller"));
+const comments_controller_1 = __importDefault(require("./comments/comments.controller"));
+const home_controller_1 = __importDefault(require("./home/home.controller"));
+const likes_controller_1 = __importDefault(require("./likes/likes.controller"));
+const posts_controller_1 = __importDefault(require("./posts/posts.controller"));
+const users_controller_1 = __importDefault(require("./users/users.controller"));
+const controllers = (0, express_1.Router)();
+controllers.use("/", home_controller_1.default);
+controllers.use("/users", users_controller_1.default);
+controllers.use("/auth", auth_controller_1.default);
+controllers.use("/posts", posts_controller_1.default);
+controllers.use("/comments", comments_controller_1.default);
+controllers.use("/like-post", likes_controller_1.default);
+exports.default = controllers;

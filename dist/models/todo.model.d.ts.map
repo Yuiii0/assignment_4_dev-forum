@@ -1,0 +1,1 @@
+{"version":3,"file":"todo.model.d.ts","sourceRoot":"","sources":["../../src/models/todo.model.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,SAAS;WACf,QAAQ;WAOR,UAAU,CAAC,MAAM,EAAE,MAAM;CAKvC;AAED,KAAK,IAAI,GAAG;IACV,EAAE,EAAE,MAAM,CAAC;IACX,MAAM,EAAE,MAAM,CAAC;IACf,KAAK,EAAE,MAAM,CAAC;IACd,SAAS,EAAE,OAAO,CAAC;CACpB,CAAC"}
